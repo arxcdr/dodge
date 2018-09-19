@@ -19,11 +19,13 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 	if velocity.length() > 0:
+		$Trail.emitting = true
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
 
 	else:
 		$AnimatedSprite.stop()
+		$Trail.emitting = false
 	
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screensize.x)
